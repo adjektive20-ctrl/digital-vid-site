@@ -67,11 +67,10 @@ export default function DigisystLandingDraft() {
   const renderCaseImage = (item) => {
     if (item.type === "single") {
       return (
-        <div
-          className="h-full w-full bg-cover bg-center"
-          style={{
-            backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.38)), url(${item.image})`
-          }}
+        <img
+          src={item.image}
+          alt={item.title}
+          className="h-full w-full object-cover"
         />
       );
     }
@@ -80,12 +79,11 @@ export default function DigisystLandingDraft() {
       return (
         <div className="grid h-full grid-cols-2 gap-[1px] bg-white/10">
           {item.images.map((image, index) => (
-            <div
+            <img
               key={`${item.title}-${index}`}
-              className="h-full w-full bg-cover bg-center"
-              style={{
-                backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.35)), url(${image})`
-              }}
+              src={image}
+              alt={`${item.title} ${index + 1}`}
+              className="h-full w-full object-cover"
             />
           ))}
         </div>
@@ -272,7 +270,9 @@ export default function DigisystLandingDraft() {
           <div className="mt-14 grid gap-6 lg:grid-cols-3">
             {cases.map((item) => (
               <div key={item.title} className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035]">
-                <div className="aspect-[16/11] overflow-hidden">{renderCaseImage(item)}</div>
+                <div className="aspect-[16/11] overflow-hidden bg-black/20">
+                  {renderCaseImage(item)}
+                </div>
                 <div className="p-7">
                   <h3 className="mt-3 text-xl font-medium tracking-[-0.02em]">{item.title}</h3>
                   <p className="mt-4 text-sm leading-7 text-white/62">{item.text}</p>
